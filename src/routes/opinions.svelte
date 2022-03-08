@@ -10,13 +10,17 @@
 	var _ZAHL  = 0;
 
 	function _add_topic() {
-		topics = [...topics, new_topic];
-		new_topic = '';
+		if (new_topic != ""){
+			topics = [...topics, new_topic];
+			new_topic = '';
+		}
 	}
 
 	function _add_opinion() {
+		if (new_opinion != ""){
 		opinions = [...opinions, new_opinion];
 		new_opinion = '';	}
+	}
 
 </script>
 
@@ -31,8 +35,7 @@
 
 
 <button
-		class="bg-gray-800 text-white rounded-md p-1 m-1 
-				hover:bg-gray-200  hover:text-black"
+class="btn-primary"
 		on:click={() => {
 			_add_topic();
 		}}>_add_topic</button
@@ -44,9 +47,8 @@
 
 
     <button
-		class="bg-gray-800 text-white rounded-md p-1 m-1 
-				hover:bg-gray-200  hover:text-black"
-		on:click={() => {
+	class="btn-primary"
+			on:click={() => {
 			_add_opinion();
 		}}>_add_opinion</button
 	>
@@ -54,15 +56,13 @@
 	
 <br/>
 <br/>
-<br/>
-<br/>
-<br/>
 topics:
-{topics}
-<br/>
-<br/>
-<br/>
+{#each topics as item}
+		<Nested {item} />
+	{/each}
 <br/>
 <br/>
 opinions:
-{opinions}
+{#each opinions as item}
+		<Nested {item} />
+	{/each}
